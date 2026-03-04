@@ -14,7 +14,6 @@ const fullNameInput = document.getElementById("closer-full-name");
 const rankInput = document.getElementById("closer-rank");
 const nameError = document.getElementById("name-error");
 const rankError = document.getElementById("rank-error");
-
 const CHART_MAX = 8;
 const DEFAULT_SECTION = "dashboard";
 const closerLeadData = [
@@ -98,6 +97,7 @@ document.getElementById("shuffle-calls-btn")?.addEventListener("click", () => {
   alert("Call shuffle started.");
 });
 
+
 function openAddCloserModal() {
   if (!addCloserModal) return;
   addCloserModal.hidden = false;
@@ -166,6 +166,9 @@ document.getElementById("closers-panel")?.addEventListener("click", (event) => {
   if (actionButton.classList.contains("delete-action")) {
     alert(`Delete ${closerName} flow coming next.`);
   }
+
+document.getElementById("add-closer-btn")?.addEventListener("click", () => {
+  alert("Add Closer flow coming next.");
 });
 
 renderLeadDistributionChart(closerLeadData);
