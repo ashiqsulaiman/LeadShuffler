@@ -72,13 +72,122 @@
               Add Closer
             </button>
           </div>
-        </section>
 
-        <section id="leads-panel" class="panel" aria-live="polite">
-          <h2>Leads</h2>
-          <p>Lead management tools will be added next.</p>
-        </section>
-      </main>
+          <div class="closers-table-wrap">
+            <table class="closers-table" aria-label="Sales closers table">
+              <thead>
+                <tr>
+                  <th scope="col">Rank</th>
+                  <th scope="col">Closer Name</th>
+                  <th scope="col">Active Status</th>
+                  <th scope="col">Assigned Leads</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Alex Carter</td>
+                  <td>
+                    <label class="switch" aria-label="Set Alex Carter active status">
+                      <input type="checkbox" checked />
+                      <span class="slider" aria-hidden="true"></span>
+                    </label>
+                  </td>
+                  <td>18</td>
+                  <td>
+                    <div class="actions-cell">
+                      <button class="icon-action edit-action" type="button" aria-label="Edit Alex Carter">
+                        <svg class="icon-svg" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                          <path d="M4 20l4.4-1 10-10a2 2 0 0 0 0-2.8l-.6-.6a2 2 0 0 0-2.8 0l-10 10L4 20Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </button>
+                      <button class="icon-action delete-action" type="button" aria-label="Delete Alex Carter">🗑</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Brooke Lane</td>
+                  <td>
+                    <label class="switch" aria-label="Set Brooke Lane active status">
+                      <input type="checkbox" checked />
+                      <span class="slider" aria-hidden="true"></span>
+                    </label>
+                  </td>
+                  <td>16</td>
+                  <td>
+                    <div class="actions-cell">
+                      <button class="icon-action edit-action" type="button" aria-label="Edit Brooke Lane">
+                        <svg class="icon-svg" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                          <path d="M4 20l4.4-1 10-10a2 2 0 0 0 0-2.8l-.6-.6a2 2 0 0 0-2.8 0l-10 10L4 20Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </button>
+                      <button class="icon-action delete-action" type="button" aria-label="Delete Brooke Lane">🗑</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>Chris Young</td>
+                  <td>
+                    <label class="switch" aria-label="Set Chris Young active status">
+                      <input type="checkbox" />
+                      <span class="slider" aria-hidden="true"></span>
+                    </label>
+                  </td>
+                  <td>11</td>
+                  <td>
+                    <div class="actions-cell">
+                      <button class="icon-action edit-action" type="button" aria-label="Edit Chris Young">
+                        <svg class="icon-svg" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                          <path d="M4 20l4.4-1 10-10a2 2 0 0 0 0-2.8l-.6-.6a2 2 0 0 0-2.8 0l-10 10L4 20Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </button>
+                      <button class="icon-action delete-action" type="button" aria-label="Delete Chris Young">🗑</button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+    <div id="add-closer-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="add-closer-title" hidden>
+      <div class="modal-backdrop" data-close-modal="true"></div>
+      <div class="modal-card">
+        <div class="modal-header">
+          <h3 id="add-closer-title">Add Closer</h3>
+          <button id="close-add-closer-modal" class="close-modal-btn" type="button" aria-label="Close add closer popup">✕</button>
+        </div>
+
+        <form id="add-closer-form" novalidate>
+          <label class="form-field">
+            <span>Full Name</span>
+            <input id="closer-full-name" name="fullName" type="text" placeholder="Enter full name" required />
+            <small id="name-error" class="field-error" hidden>Name must contain alphabets only.</small>
+          </label>
+
+          <label class="form-field">
+            <span>Rank (lower number is higher rank, e.g., 1 is top)</span>
+            <input id="closer-rank" name="rank" type="text" placeholder="Enter rank" required />
+            <small id="rank-error" class="field-error" hidden>Rank must be an integer.</small>
+          </label>
+
+          <div class="status-highlight">
+            <div class="status-title-row">
+              <span>Active Status</span>
+              <label class="switch" aria-label="Set active status for new closer">
+                <input id="closer-active-status" name="activeStatus" type="checkbox" checked />
+                <span class="slider" aria-hidden="true"></span>
+              </label>
+            </div>
+            <p>Inactive closers won't receive new leads in shuffles.</p>
+          </div>
+
+          <div class="form-actions">
+            <button class="add-closer-btn" type="submit">Save Closer</button>
+          </div>
+        </form>
+      </div>
     </div>
 
     <script src="script.js"></script>

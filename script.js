@@ -8,7 +8,12 @@ const sidebarNav = document.querySelector(".sidebar-nav");
 const navItems = document.querySelectorAll(".nav-item");
 const panels = document.querySelectorAll(".panel");
 const leadDistributionChart = document.getElementById("lead-distribution-chart");
-
+const addCloserModal = document.getElementById("add-closer-modal");
+const addCloserForm = document.getElementById("add-closer-form");
+const fullNameInput = document.getElementById("closer-full-name");
+const rankInput = document.getElementById("closer-rank");
+const nameError = document.getElementById("name-error");
+const rankError = document.getElementById("rank-error");
 const CHART_MAX = 8;
 const DEFAULT_SECTION = "dashboard";
 const closerLeadData = [
@@ -91,6 +96,76 @@ window.addEventListener("hashchange", () => {
 document.getElementById("shuffle-calls-btn")?.addEventListener("click", () => {
   alert("Call shuffle started.");
 });
+
+
+function openAddCloserModal() {
+  if (!addCloserModal) return;
+  addCloserModal.hidden = false;
+}
+
+function closeAddCloserModal() {
+  if (!addCloserModal) return;
+  addCloserModal.hidden = true;
+  addCloserForm?.reset();
+  nameError?.setAttribute("hidden", "");
+  rankError?.setAttribute("hidden", "");
+}
+
+function validateName(value) {
+  return /^[A-Za-z ]+$/.test(value.trim());
+}
+
+function validateRank(value) {
+  return /^\d+$/.test(value.trim());
+}
+
+document.getElementById("add-closer-btn")?.addEventListener("click", openAddCloserModal);
+document.getElementById("close-add-closer-modal")?.addEventListener("click", closeAddCloserModal);
+
+document.querySelector('[data-close-modal="true"]')?.addEventListener("click", closeAddCloserModal);
+
+addCloserForm?.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const isNameValid = validateName(fullNameInput?.value || "");
+  const isRankValid = validateRank(rankInput?.value || "");
+
+  if (!isNameValid) {
+    nameError?.removeAttribute("hidden");
+  } else {
+    nameError?.setAttribute("hidden", "");
+  }
+
+  if (!isRankValid) {
+    rankError?.removeAttribute("hidden");
+  } else {
+    rankError?.setAttribute("hidden", "");
+  }
+
+  if (!isNameValid || !isRankValid) return;
+
+  alert("Closer saved locally.");
+  closeAddCloserModal();
+});
+
+document.getElementById("closers-panel")?.addEventListener("click", (event) => {
+  const target = event.target;
+  if (!(target instanceof HTMLElement)) return;
+
+  const actionButton = target.closest(".icon-action");
+  if (!(actionButton instanceof HTMLButtonElement)) return;
+
+  const row = actionButton.closest("tr");
+  const closerName = row?.children[1]?.textContent?.trim() || "closer";
+
+  if (actionButton.classList.contains("edit-action")) {
+    alert(`Edit ${closerName} flow coming next.`);
+    return;
+  }
+
+  if (actionButton.classList.contains("delete-action")) {
+    alert(`Delete ${closerName} flow coming next.`);
+  }
 
 document.getElementById("add-closer-btn")?.addEventListener("click", () => {
   alert("Add Closer flow coming next.");
