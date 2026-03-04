@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lead Shuffler</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+          <h1>Lead Shuffler</h1>
+          <button id="toggle-sidebar-btn" class="toggle-sidebar-btn" type="button" aria-label="Collapse sidebar">
+            ⮜
+          </button>
+        </div>
+
+        <nav class="sidebar-nav" aria-label="Main navigation">
+          <button class="nav-item is-active" type="button" data-section="dashboard">Dashboard</button>
+          <button class="nav-item" type="button" data-section="closers">Closers</button>
+          <button class="nav-item" type="button" data-section="leads">Leads</button>
+        </nav>
+      </aside>
+
+      <main class="main-content" id="main-content">
+        <section id="dashboard-panel" class="panel is-visible" aria-live="polite">
+          <div class="dashboard-header-row">
+            <div>
+              <h2>Dashboard</h2>
+              <p>Overview of your lead distribution</p>
+            </div>
+            <button id="shuffle-calls-btn" class="shuffle-calls-btn" type="button">Shuffle Calls</button>
+          </div>
+
+          <div class="stats-grid">
+            <article class="stat-card">
+              <h3>Total Leads</h3>
+              <p class="stat-value" id="total-leads-value">128</p>
+            </article>
+            <article class="stat-card">
+              <h3>Active Closers</h3>
+              <p class="stat-value" id="active-closers-value">8</p>
+            </article>
+          </div>
+
+          <section class="distribution-section" aria-label="Lead assignment distribution">
+            <h3>Lead Assignment by Active Closer</h3>
+            <div class="chart-scroll">
+              <div class="chart-frame">
+                <ol class="y-axis" aria-label="Y axis scale from 0 to 8 in increments of 2">
+                  <li>8</li>
+                  <li>6</li>
+                  <li>4</li>
+                  <li>2</li>
+                  <li>0</li>
+                </ol>
+                <div id="lead-distribution-chart" class="bar-chart" role="img" aria-label="Bar chart of leads assigned per active closer"></div>
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <section id="closers-panel" class="panel" aria-live="polite">
+          <div class="closers-header-row">
+            <div>
+              <h2>Sales Closers</h2>
+              <p>Manage and rank your team of sales representatives (Rank 1 is highest).</p>
+            </div>
+            <button id="add-closer-btn" class="add-closer-btn" type="button" aria-label="Add closer">
+              <span class="plus-icon" aria-hidden="true">+</span>
+              Add Closer
+            </button>
+          </div>
+        </section>
+
+        <section id="leads-panel" class="panel" aria-live="polite">
+          <h2>Leads</h2>
+          <p>Lead management tools will be added next.</p>
+        </section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
